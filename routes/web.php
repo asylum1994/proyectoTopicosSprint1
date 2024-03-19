@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\JugadorController;
+use App\Http\Controllers\JuegoController;
+use App\Http\Controllers\RolController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HolaMundoController;
+//use App\Http\Controllers\JugadorController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +18,15 @@ use App\Http\Controllers\HolaMundoController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('holaMundo');
-});*/
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', [HolaMundoController::class, 'index']);
+//Route::resource('jugadors','JugadorController');
+Route::resource('jugadors', JugadorController::class);
+Route::resource('juegos', JuegoController::class);
+Route::resource('rols', RolController::class);
+Auth::routes();
 
 
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
